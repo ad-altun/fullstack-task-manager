@@ -29,14 +29,15 @@ public class ToDoService {
     }
 
     public ToDo updateToDo(String id, ToDo newData) {
-        Optional<ToDo> oldData = toDoRepository.findById(id);
-
         toDoRepository.deleteToDoById(id);
-
 
         ToDo newToDo = new ToDo(id, newData.getDescription(), newData.getStatus());
 
         return toDoRepository.save(newToDo);
+    }
+
+    public void deleteToDo(String id) {
+        toDoRepository.deleteToDoById(id);
     }
 
 }
