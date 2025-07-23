@@ -32,10 +32,10 @@ public class ToDoService {
         return toDoRepository.findById(id);
     }
 
-    public ToDo updateToDo(String id, ToDo newData) {
+    public ToDo updateToDo(String id, ToDoDto newData) {
         toDoRepository.deleteToDoById(id);
 
-        ToDo newToDo = new ToDo(id, newData.getDescription(), newData.getStatus());
+        ToDo newToDo = new ToDo(id, newData.description(), newData.status());
 
         return toDoRepository.save(newToDo);
     }
