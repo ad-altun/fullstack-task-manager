@@ -1,5 +1,6 @@
 package org.example.springrecaptodo.service;
 
+import org.example.springrecaptodo.dto.ToDoDto;
 import org.example.springrecaptodo.model.ToDo;
 import org.example.springrecaptodo.model.ToDoStatus;
 import org.example.springrecaptodo.repository.ToDoRepository;
@@ -12,9 +13,10 @@ import static org.mockito.Mockito.*;
 
 class ToDoServiceTest {
 
-    ToDoRepository toDoRepository = mock(ToDoRepository.class);
+    private final ToDoRepository mockRepository = mock(ToDoRepository.class);
+    private final IdService mockService = mock(IdService.class);
 
-    ToDoService toDoService = new ToDoService(toDoRepository);
+    private final ToDoService testService = new ToDoService(mockRepository, mockService);
 
     @Test
     void getToDos_whenCalled() {
@@ -24,14 +26,40 @@ class ToDoServiceTest {
         ToDo toDo3 = new ToDo("3", "td-3", ToDoStatus.DONE);
 
         List<ToDo> expected = List.of(toDo1, toDo2, toDo3);
-        when(toDoRepository.findAll()).thenReturn(expected);
+        when(mockRepository.findAll()).thenReturn(expected);
 
         // when
-        List<ToDo> actual = toDoService.getToDos();
+        List<ToDo> actual = testService.getToDos();
 
         // then
-        verify(toDoRepository).findAll();
+        verify(mockRepository).findAll();
         assertEquals(expected, actual);
     }
 
+    @Test
+    void addToDo_shouldAddToRepo_whenCalledWithNewToDo() {
+        // given
+        ToDoDto toDoDto = new ToDoDto("todo", ToDoStatus.OPEN);
+        ToDo expected = new ToDo("1", "todo", ToDoStatus.OPEN);
+        when(mockService.generateId()).thenReturn("1");
+
+        // when
+        ToDo actual = testService.addToDo(toDoDto);
+
+        // then
+        assertEquals(expected,actual);
+        verify(mockRepository).save(expected);
+    }
+
+//    @Test
+//    void getToDoById() {
+//    }
+//
+//    @Test
+//    void updateToDo() {
+//    }
+//
+//    @Test
+//    void deleteToDo() {
+//    }
 }
