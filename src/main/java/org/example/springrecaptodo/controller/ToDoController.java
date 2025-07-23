@@ -1,5 +1,6 @@
 package org.example.springrecaptodo.controller;
 
+import org.example.springrecaptodo.dto.ToDoDto;
 import org.example.springrecaptodo.model.ToDo;
 import org.example.springrecaptodo.service.ToDoService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class ToDoController {
     }
 
     @PostMapping
-    public ToDo addToDo(@RequestBody ToDo toDo) {
+    public ToDo addToDo(@RequestBody ToDoDto toDo) {
         return toDoService.addToDo(toDo);
     }
 
