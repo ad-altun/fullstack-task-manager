@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class ToDoService {
@@ -15,8 +14,9 @@ public class ToDoService {
     IdService idService;
     ToDoRepository toDoRepository;
 
-    public ToDoService(ToDoRepository repo ) {
+    public ToDoService(ToDoRepository repo, IdService service) {
         this.toDoRepository = repo;
+        this.idService = service;
     }
 
     public List<ToDo> getToDos() {
@@ -24,8 +24,13 @@ public class ToDoService {
     }
 
     public ToDo addToDo(ToDoDto newToDo) {
-        ToDo temp = new ToDo(idService.generateId(), newToDo.description(), newToDo.status());
-        return toDoRepository.save(temp);
+        ToDo toDo = new ToDo(
+                idService.generateId(),
+                newToDo.description(),
+                newToDo.status());
+
+        toDoRepository.save(toDo);
+        return toDo;
     }
 
     public ToDo getToDoById(String id) {
