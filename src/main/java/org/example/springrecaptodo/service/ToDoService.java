@@ -19,4 +19,8 @@ public class ToDoService {
         return toDoRepository.findAll();
     }
 
+    public ToDo addToDo(ToDo newToDo) {
+        return toDoRepository.save(newToDo);
+    }
+
 }
