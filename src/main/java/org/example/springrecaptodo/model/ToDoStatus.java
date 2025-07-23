@@ -3,5 +3,6 @@ package org.example.springrecaptodo.model;
 
 public enum ToDoStatus {
     OPEN,
-    CLOSED,
+    IN_PROGRESS,
+    DONE
 }
