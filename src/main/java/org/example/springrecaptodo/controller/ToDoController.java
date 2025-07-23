@@ -12,7 +12,7 @@ public class ToDoController {
 
     ToDoService toDoService;
 
-    public  ToDoController(ToDoService service) {
+    public ToDoController(ToDoService service) {
         this.toDoService = service;
     }
 
@@ -24,5 +24,10 @@ public class ToDoController {
     @PostMapping
     public ToDo addToDo(@RequestBody ToDo toDo) {
         return toDoService.addToDo(toDo);
+    }
+
+    @GetMapping("/{id}")
+    public ToDo getToDoById(@PathVariable String id) {
+        return toDoService.getToDoById(id).orElse(null);
     }
 }
