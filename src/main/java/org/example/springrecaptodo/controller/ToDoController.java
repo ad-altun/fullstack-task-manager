@@ -30,4 +30,9 @@ public class ToDoController {
     public ToDo getToDoById(@PathVariable String id) {
         return toDoService.getToDoById(id).orElse(null);
     }
+
+    @PutMapping("/{id}")
+    public ToDo updateToDo(@PathVariable String id, @RequestBody ToDo newToDo) {
+        return toDoService.updateToDo(id, newToDo);
+    }
 }
