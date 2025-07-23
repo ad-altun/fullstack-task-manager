@@ -9,4 +9,14 @@ import java.util.List;
 @Service
 public class ToDoService {
 
+    ToDoRepository toDoRepository;
+
+    public ToDoService(ToDoRepository repo) {
+        this.toDoRepository = repo;
+    }
+
+    public List<ToDo> getToDos() {
+        return toDoRepository.findAll();
+    }
+
 }
