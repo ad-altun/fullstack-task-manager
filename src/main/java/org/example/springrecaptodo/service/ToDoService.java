@@ -6,17 +6,17 @@ import org.example.springrecaptodo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class ToDoService {
 
-    private final IdService idService;
+    IdService idService;
     ToDoRepository toDoRepository;
 
-    public ToDoService(ToDoRepository repo, IdService idService) {
+    public ToDoService(ToDoRepository repo ) {
         this.toDoRepository = repo;
-        this.idService = idService;
     }
 
     public List<ToDo> getToDos() {
@@ -28,8 +28,9 @@ public class ToDoService {
         return toDoRepository.save(temp);
     }
 
-    public Optional<ToDo> getToDoById(String id) {
-        return toDoRepository.findById(id);
+    public ToDo getToDoById(String id) {
+        return toDoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("ID: '" + id + "' couldn't found!"));
     }
 
     public ToDo updateToDo(String id, ToDoDto newData) {

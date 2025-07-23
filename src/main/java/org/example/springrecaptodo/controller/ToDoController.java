@@ -6,6 +6,7 @@ import org.example.springrecaptodo.service.ToDoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/todo")
@@ -28,8 +29,8 @@ public class ToDoController {
     }
 
     @GetMapping("/{id}")
-    public ToDo getToDoById(@PathVariable String id) {
-        return toDoService.getToDoById(id).orElse(null);
+    public ToDo getToDoById(@PathVariable String id) throws NoSuchElementException {
+        return toDoService.getToDoById(id);
     }
 
     @PutMapping("/{id}")
