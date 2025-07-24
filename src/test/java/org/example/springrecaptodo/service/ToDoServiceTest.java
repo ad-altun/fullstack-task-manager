@@ -7,16 +7,18 @@ import org.example.springrecaptodo.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ToDoServiceTest {
 
     private final ToDoRepository mockRepository = mock(ToDoRepository.class);
-    private final IdService mockService = mock(IdService.class);
+    private final IdService mockIdService = mock(IdService.class);
 
-    private final ToDoService testService = new ToDoService(mockRepository, mockService);
+    private final ToDoService testService = new ToDoService(mockRepository, mockIdService);
 
     @Test
     void getToDos_whenCalled() {
@@ -41,25 +43,56 @@ class ToDoServiceTest {
         // given
         ToDoDto toDoDto = new ToDoDto("todo", ToDoStatus.OPEN);
         ToDo expected = new ToDo("1", "todo", ToDoStatus.OPEN);
-        when(mockService.generateId()).thenReturn("1");
+        when(mockIdService.generateId()).thenReturn("1");
 
         // when
         ToDo actual = testService.addToDo(toDoDto);
 
         // then
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
         verify(mockRepository).save(expected);
     }
 
-//    @Test
-//    void getToDoById() {
-//    }
-//
+    @Test
+    void getToDoById_shouldReturnToDo_whenCalledWithValidId() {
+        // given
+        ToDo expected = new ToDo("1", "todo", ToDoStatus.OPEN);
+
+        when(mockRepository.findById("1")).thenReturn(Optional.of(expected));
+
+        // when
+        ToDo actual = testService.getToDoById("1");
+
+        //then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getToDoById_shouldThrowException_whenCalledWithInvalidId() {
+        // given
+        when(mockRepository.findById("1")).thenReturn(Optional.empty());
+
+        // when
+        try {
+            testService.getToDoById("1");
+            fail();
+        } catch (NoSuchElementException e) {
+            // then
+            assertTrue(true);
+        }
+        }
+
 //    @Test
 //    void updateToDo() {
+    // given
+    // when
+    //then
 //    }
 //
 //    @Test
 //    void deleteToDo() {
+    // given
+    // when
+    //then
 //    }
 }
