@@ -2,6 +2,7 @@ package org.example.springrecaptodo.service;
 
 import org.example.springrecaptodo.dto.ToDoDto;
 import org.example.springrecaptodo.model.ToDo;
+import org.example.springrecaptodo.model.ToDoStatus;
 import org.example.springrecaptodo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,15 +40,22 @@ public class ToDoService {
     }
 
     public ToDo updateToDo(String id, ToDoDto newData) {
-        toDoRepository.deleteToDoById(id);
+        ToDo existingToDo = toDoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("ToDo with ID " + id + " not found."));
 
-        ToDo newToDo = new ToDo(id, newData.description(), newData.status());
+        existingToDo.setDescription(newData.description());
+        existingToDo.setStatus(newData.status());
 
-        return toDoRepository.save(newToDo);
+        return toDoRepository.save(existingToDo);
     }
 
-    public void deleteToDo(String id) {
-        toDoRepository.deleteToDoById(id);
+    public ToDo deleteToDo(String id) {
+        if (!toDoRepository.existsById(id)) {
+            throw new NoSuchElementException("ToDo with ID " + id + " not found.");
+        }
+        ToDo toBeDeleted = toDoRepository.findById(id).get();
+        toDoRepository.deleteById(id);
+        return toBeDeleted;
     }
 
 }

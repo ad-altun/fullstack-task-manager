@@ -34,15 +34,15 @@ public class ToDoController {
     }
 
     @PutMapping("/{id}")
-    public ToDo updateToDo(@PathVariable String id, @RequestBody ToDoDto newToDo) {
+    public ToDo updateToDo(@PathVariable String id, @RequestBody ToDoDto newToDo)
+            throws NoSuchElementException {
         return toDoService.updateToDo(id, newToDo);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteToDo(@PathVariable String id) {
-        toDoService.deleteToDo(id);
+    public ToDo deleteToDo(@PathVariable String id) throws NoSuchElementException {
+        return toDoService.deleteToDo(id);
     }
-
 
 
 }
