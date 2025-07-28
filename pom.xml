@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.example</groupId>
-	<artifactId>spring-recap-todo</artifactId>
+	<artifactId>fullstack-todo-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-recap-todo</name>
-	<description>spring-recap-todo</description>
+	<name>fullstack-todo-app</name>
+	<description>fullstack-todo-app</description>
 	<url/>
 	<licenses>
 		<license/>

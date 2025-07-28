@@ -1,9 +1,9 @@
-package org.example.springrecaptodo.controller;
+package org.example.fullstacktodoapp.controller;
 
-import org.example.springrecaptodo.dto.ToDoDto;
-import org.example.springrecaptodo.exception.ToDoNotFoundException;
-import org.example.springrecaptodo.model.ToDo;
-import org.example.springrecaptodo.service.ToDoService;
+import org.example.fullstacktodoapp.dto.ToDoDto;
+import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
+import org.example.fullstacktodoapp.model.ToDo;
+import org.example.fullstacktodoapp.service.ToDoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +19,11 @@ public class ToDoController {
     }
 
     @GetMapping
-    public List<ToDo> getToDos() {
+    public List<ToDo> getToDos() throws ToDoNotFoundException {
+        if (toDoService.getToDos().isEmpty())
+        {
+            throw new ToDoNotFoundException("No record found!");
+        }
         return toDoService.getToDos();
     }
 

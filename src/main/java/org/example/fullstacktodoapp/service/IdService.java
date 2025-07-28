@@ -1,4 +1,4 @@
-package org.example.springrecaptodo.service;
+package org.example.fullstacktodoapp.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.example.springrecaptodo.exception;
+package org.example.fullstacktodoapp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

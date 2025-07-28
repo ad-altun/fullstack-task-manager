@@ -1,10 +1,10 @@
-package org.example.springrecaptodo.service;
+package org.example.fullstacktodoapp.service;
 
-import org.example.springrecaptodo.dto.ToDoDto;
-import org.example.springrecaptodo.exception.ToDoNotFoundException;
-import org.example.springrecaptodo.model.ToDo;
-import org.example.springrecaptodo.model.ToDoStatus;
-import org.example.springrecaptodo.repository.ToDoRepository;
+import org.example.fullstacktodoapp.dto.ToDoDto;
+import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
+import org.example.fullstacktodoapp.model.ToDo;
+import org.example.fullstacktodoapp.model.ToDoStatus;
+import org.example.fullstacktodoapp.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 class ToDoServiceTest {
 
     @Test
-    void getToDos_shouldReturnAllToDos_whenCalled() {
+    void getToDos_shouldReturnAllToDos_whenCalled() throws ToDoNotFoundException {
         ToDoRepository mockRepository = mock(ToDoRepository.class);
         IdService mockIdService = mock(IdService.class);
         ToDoService testService = new ToDoService(mockRepository, mockIdService);

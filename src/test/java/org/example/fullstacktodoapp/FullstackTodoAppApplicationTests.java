@@ -1,10 +1,10 @@
-package org.example.springrecaptodo;
+package org.example.fullstacktodoapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringRecapTodoApplicationTests {
+class FullstackTodoAppApplicationTests {
 
 	@Test
 	void contextLoads() {

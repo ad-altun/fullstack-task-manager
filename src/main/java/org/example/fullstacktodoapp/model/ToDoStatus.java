@@ -1,4 +1,4 @@
-package org.example.springrecaptodo.model;
+package org.example.fullstacktodoapp.model;
 
 
 public enum ToDoStatus {

@@ -1,13 +1,13 @@
-package org.example.springrecaptodo;
+package org.example.fullstacktodoapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringRecapTodoApplication {
+public class FullstackTodoAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringRecapTodoApplication.class, args);
+		SpringApplication.run(FullstackTodoAppApplication.class, args);
 	}
 
 }

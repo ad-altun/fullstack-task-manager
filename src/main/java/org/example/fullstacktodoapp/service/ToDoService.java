@@ -1,9 +1,9 @@
-package org.example.springrecaptodo.service;
+package org.example.fullstacktodoapp.service;
 
-import org.example.springrecaptodo.dto.ToDoDto;
-import org.example.springrecaptodo.exception.ToDoNotFoundException;
-import org.example.springrecaptodo.model.ToDo;
-import org.example.springrecaptodo.repository.ToDoRepository;
+import org.example.fullstacktodoapp.dto.ToDoDto;
+import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
+import org.example.fullstacktodoapp.model.ToDo;
+import org.example.fullstacktodoapp.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class ToDoService {
         this.idService = service;
     }
 
-    public List<ToDo> getToDos() {
+    public List<ToDo> getToDos() throws ToDoNotFoundException {
         return toDoRepository.findAll();
     }
 

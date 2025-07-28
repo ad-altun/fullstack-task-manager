@@ -1,6 +1,6 @@
-package org.example.springrecaptodo.repository;
+package org.example.fullstacktodoapp.repository;
 
-import org.example.springrecaptodo.model.ToDo;
+import org.example.fullstacktodoapp.model.ToDo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

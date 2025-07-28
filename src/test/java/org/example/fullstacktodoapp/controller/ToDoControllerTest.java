@@ -1,8 +1,8 @@
-package org.example.springrecaptodo.controller;
+package org.example.fullstacktodoapp.controller;
 
-import org.example.springrecaptodo.model.ToDo;
-import org.example.springrecaptodo.model.ToDoStatus;
-import org.example.springrecaptodo.repository.ToDoRepository;
+import org.example.fullstacktodoapp.model.ToDo;
+import org.example.fullstacktodoapp.model.ToDoStatus;
+import org.example.fullstacktodoapp.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
