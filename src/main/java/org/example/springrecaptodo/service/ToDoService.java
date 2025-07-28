@@ -1,13 +1,12 @@
 package org.example.springrecaptodo.service;
 
 import org.example.springrecaptodo.dto.ToDoDto;
+import org.example.springrecaptodo.exception.ToDoNotFoundException;
 import org.example.springrecaptodo.model.ToDo;
-import org.example.springrecaptodo.model.ToDoStatus;
 import org.example.springrecaptodo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class ToDoService {
@@ -34,14 +33,14 @@ public class ToDoService {
         return toDo;
     }
 
-    public ToDo getToDoById(String id) {
+    public ToDo getToDoById(String id) throws ToDoNotFoundException {
         return toDoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("ID: '" + id + "' couldn't found!"));
+                .orElseThrow(() -> new ToDoNotFoundException("ID: '" + id + "' couldn't found!"));
     }
 
-    public ToDo updateToDo(String id, ToDoDto newData) {
+    public ToDo updateToDo(String id, ToDoDto newData) throws ToDoNotFoundException {
         ToDo existingToDo = toDoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("ToDo with ID " + id + " not found."));
+                .orElseThrow(() -> new ToDoNotFoundException("ToDo with ID " + id + " not found."));
 
         existingToDo.setDescription(newData.description());
         existingToDo.setStatus(newData.status());
@@ -49,9 +48,9 @@ public class ToDoService {
         return toDoRepository.save(existingToDo);
     }
 
-    public ToDo deleteToDo(String id) {
+    public ToDo deleteToDo(String id) throws ToDoNotFoundException {
         if (!toDoRepository.existsById(id)) {
-            throw new NoSuchElementException("ToDo with ID " + id + " not found.");
+            throw new ToDoNotFoundException("ToDo with ID " + id + " not found.");
         }
         ToDo toBeDeleted = toDoRepository.findById(id).get();
         toDoRepository.deleteById(id);

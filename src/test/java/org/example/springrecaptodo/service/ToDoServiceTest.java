@@ -1,13 +1,13 @@
 package org.example.springrecaptodo.service;
 
 import org.example.springrecaptodo.dto.ToDoDto;
+import org.example.springrecaptodo.exception.ToDoNotFoundException;
 import org.example.springrecaptodo.model.ToDo;
 import org.example.springrecaptodo.model.ToDoStatus;
 import org.example.springrecaptodo.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,7 +77,7 @@ class ToDoServiceTest {
     }
 
     @Test
-    void getToDoById_shouldReturnToDo_whenCalledWithValidId() {
+    void getToDoById_shouldReturnToDo_whenCalledWithValidId() throws ToDoNotFoundException {
         ToDoRepository mockRepo = mock(ToDoRepository.class);
         IdService mockIdService = mock(IdService.class);
         ToDoService testService = new ToDoService(mockRepo, mockIdService);
@@ -124,7 +124,7 @@ class ToDoServiceTest {
         try {
             testService.getToDoById("1");
             fail();
-        } catch (NoSuchElementException e) {
+        } catch (ToDoNotFoundException e) {
             // Then
             assertTrue(true);
         }
@@ -142,7 +142,7 @@ class ToDoServiceTest {
         try {
             testService.getToDoById("1");
             fail();
-        } catch (NoSuchElementException e) {
+        } catch (ToDoNotFoundException e) {
             // then
             assertTrue(true);
         }
@@ -152,7 +152,7 @@ class ToDoServiceTest {
     }
 
     @Test
-    void updateToDo_shouldReturnUpdatedData_whenCalledWithValidId() {
+    void updateToDo_shouldReturnUpdatedData_whenCalledWithValidId() throws ToDoNotFoundException {
         ToDoRepository mockRepository = mock(ToDoRepository.class);
         IdService mockIdService = mock(IdService.class);
         ToDoService testService = new ToDoService(mockRepository, mockIdService);
@@ -204,13 +204,13 @@ class ToDoServiceTest {
 //        try {
 //            testService.updateToDo(invalidId, updateToDo);
 //            fail();
-//        } catch (NoSuchElementException e) {
+//        } catch (ToDoNotFoundException e) {
 //            // then
 //            assertTrue(true);
 //        }
 
         assertThrows(
-                NoSuchElementException.class,
+                ToDoNotFoundException.class,
                 () -> testService.updateToDo(invalidId, updateToDo)
         );
 
@@ -219,7 +219,7 @@ class ToDoServiceTest {
     }
 
     @Test
-    void deleteToDo_shouldReturnSameToDo_whenCalledWithValidId() {
+    void deleteToDo_shouldReturnSameToDo_whenCalledWithValidId() throws ToDoNotFoundException {
         ToDoRepository mockRepository = mock(ToDoRepository.class);
         IdService mockIdService = mock(IdService.class);
         ToDoService testService = new ToDoService(mockRepository, mockIdService);
@@ -251,7 +251,7 @@ class ToDoServiceTest {
 
         when(mockRepository.existsById(invalidId)).thenReturn(false);
 
-        assertThrows(NoSuchElementException.class,
+        assertThrows(ToDoNotFoundException.class,
                 () -> testService.deleteToDo(invalidId));
 
 //        verify(mockRepository).existsById(invalidId);
