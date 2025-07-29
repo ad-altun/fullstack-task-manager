@@ -151,15 +151,20 @@ class ToDoControllerTest {
     }
 
     @Test
-    void updateToDo_shouldThrowToDoNotFoundException_whenCalledWithUnvalidId() throws Exception {
+    void updateToDo_shouldThrowInvalidIdRequestedException_whenCalledWithUnvalidId() throws Exception {
         // given
 
         // when
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/todo/1"))
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/todo/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+{
+}
+"""))
                 // then
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().string(
-                        "ToDo with ID 1 not found."
+                        "This ID is not available!"
                 ));
     }
 
