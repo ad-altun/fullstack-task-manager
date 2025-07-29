@@ -34,7 +34,7 @@ class ToDoControllerTest {
 
         // when
         mockMvc.perform(MockMvcRequestBuilders.get("/api/todo"))
-        // then
+                // then
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(
                         """
@@ -50,12 +50,12 @@ class ToDoControllerTest {
     }
 
     @Test
-    void getTodos_shouldThrowToDoNotFoundException_WhenCalledWithEmptyRepo() throws Exception{
+    void getTodos_shouldThrowToDoNotFoundException_WhenCalledWithEmptyRepo() throws Exception {
         // given
 
         // when
         mockMvc.perform(MockMvcRequestBuilders.get("/api/todo"))
-        // then
+                // then
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andExpect(MockMvcResultMatchers.content().string("No record found!"));
 
@@ -85,4 +85,42 @@ class ToDoControllerTest {
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
 
+    @Test
+    void getToDoById_shouldReturnSearchedToDo_whenCalledWithValidId() throws Exception {
+        // given
+        ToDo toDo = new ToDo("1", "description", ToDoStatus.OPEN);
+        toDoRepository.save(toDo);
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/todo/1"))
+                //then
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(
+                        """
+                                {
+                                "id": "1",
+                                "description": "description",
+                                "status": "OPEN"
+                                }
+                                """
+                ));
+    }
+
+    @Test
+    void getToDoById_shouldThrowToDoNotFoundException_whenCalledWithUnvalidId() throws Exception {
+        // given
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/todo/1"))
+                // then
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.content().string(
+                        "ToDo with ID 1 not found."
+                ));
+    }
+
 }
+
+
+
+
