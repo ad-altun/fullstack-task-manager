@@ -1,6 +1,7 @@
 package org.example.fullstacktodoapp.controller;
 
 import org.example.fullstacktodoapp.dto.ToDoDto;
+import org.example.fullstacktodoapp.exception.InvalidIdRequestedException;
 import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
 import org.example.fullstacktodoapp.model.ToDo;
 import org.example.fullstacktodoapp.service.ToDoService;
@@ -39,7 +40,7 @@ public class ToDoController {
 
     @PutMapping("/{id}")
     public ToDo updateToDo(@PathVariable String id, @RequestBody ToDoDto newToDo)
-            throws ToDoNotFoundException {
+            throws InvalidIdRequestedException {
         return toDoService.updateToDo(id, newToDo);
     }
 

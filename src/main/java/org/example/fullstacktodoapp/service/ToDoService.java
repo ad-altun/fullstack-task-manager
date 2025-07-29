@@ -1,6 +1,7 @@
 package org.example.fullstacktodoapp.service;
 
 import org.example.fullstacktodoapp.dto.ToDoDto;
+import org.example.fullstacktodoapp.exception.InvalidIdRequestedException;
 import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
 import org.example.fullstacktodoapp.model.ToDo;
 import org.example.fullstacktodoapp.repository.ToDoRepository;
@@ -35,12 +36,12 @@ public class ToDoService {
 
     public ToDo getToDoById(String id) throws ToDoNotFoundException {
         return toDoRepository.findById(id)
-                .orElseThrow(() -> new ToDoNotFoundException("ID: '" + id + "' couldn't found!"));
+                .orElseThrow(() -> new ToDoNotFoundException("ToDo with ID " + id + " not found."));
     }
 
-    public ToDo updateToDo(String id, ToDoDto newData) throws ToDoNotFoundException {
+    public ToDo updateToDo(String id, ToDoDto newData) throws InvalidIdRequestedException {
         ToDo existingToDo = toDoRepository.findById(id)
-                .orElseThrow(() -> new ToDoNotFoundException("ToDo with ID " + id + " not found."));
+                .orElseThrow(() -> new InvalidIdRequestedException("This ID is not available!"));
 
         existingToDo.setDescription(newData.description());
         existingToDo.setStatus(newData.status());
