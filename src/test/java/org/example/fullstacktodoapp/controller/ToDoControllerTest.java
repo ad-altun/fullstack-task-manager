@@ -1,5 +1,6 @@
 package org.example.fullstacktodoapp.controller;
 
+import org.example.fullstacktodoapp.exception.GlobalExceptionHandler;
 import org.example.fullstacktodoapp.model.ToDo;
 import org.example.fullstacktodoapp.model.ToDoStatus;
 import org.example.fullstacktodoapp.repository.ToDoRepository;
@@ -10,6 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.Collections;
+
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -25,7 +30,7 @@ class ToDoControllerTest {
     void getTodos_shouldReturnListOfToDos_whenCalled() throws Exception {
 
         // given
-        ToDo toDo = new ToDo("1", "description", ToDoStatus.OPEN);
+        ToDo toDo = new ToDo("", "description", ToDoStatus.OPEN);
         toDoRepository.save(toDo);
 
         // when
@@ -43,6 +48,18 @@ class ToDoControllerTest {
                                 ]
                                 """
                 ));
+    }
+
+    @Test
+    void getTodos_shouldThrowToDoNotFoundException_WhenCalledWithEmptyRepo() throws Exception{
+        // given
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/todo"))
+        // then
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.content().string("No record found!"));
+
     }
 
 }
