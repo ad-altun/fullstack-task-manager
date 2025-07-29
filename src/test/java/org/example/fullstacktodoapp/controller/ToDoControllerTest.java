@@ -163,6 +163,31 @@ class ToDoControllerTest {
                 ));
     }
 
+    @Test
+    @DirtiesContext
+    void deleteToDo_shouldReturnUpdatedToDo_whenCalledWithValidId() throws Exception {
+        // given
+        ToDo toDo = new ToDo("1", "description", ToDoStatus.OPEN);
+        toDoRepository.save(toDo);
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/todo/1"))
+                //then
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void deleteToDo_shouldThrowToDoNotFoundException_whenCalledWithUnvalidId() throws Exception {
+        // given
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/todo/1"))
+                // then
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.content().string(
+                        "ToDo with ID 1 not found."
+                ));
+    }
 
 }
 
