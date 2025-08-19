@@ -1,0 +1,154 @@
+
+:root {
+    --primary-blue: #1a73e8;
+    --text-primary: #3c4043;
+    /*--text-primary: #ddd;*/
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --background-main: #ffffff;
+    /*--background-main: #222;*/
+    --surface-hover: #f1f3f4;
+    --border-divider: #e8eaed;
+    --status-error: #ea4335;
+}
+
+/* 1. Use a more intuitive box-sizing model on all elements. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin from the body. */
+body {
+    margin: 0;
+    /* Improve default text rendering and readability */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 100dvh;
+}
+
+/* 3. Make images and other media fluid. */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 4. Set core typography and accessibility defaults. */
+html {
+    /* Set a base font size for easier rem calculations */
+    font-size: 100%;
+}
+
+/* 5. Improve focus states for keyboard-only users. */
+:focus-visible {
+    outline: 2px solid;
+    outline-offset: 2px;
+}
+
+.app-main {
+    margin: 1rem;
+}
+
+.app-content {
+    display: flex;
+    align-items: baseline;
+}
+
+.header {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sidebar-create {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.sidebar {
+    width: 17.5rem;
+    margin-right: 2rem;
+}
+
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /*background-color: #ccc;*/
+    width: 100%;
+    /*height: calc(100dvh - 6rem);*/
+    padding: 0 1.5rem;
+}
+
+.tasklist-app {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title, .task-note {
+    margin: 0;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;;
+    min-width: 20rem;
+    /*border: 1px solid;*/
+    padding: .25rem;
+}
+
+.task-item-content {
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+}
+
+.task-item-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+}
+
+.edit-button, .delete-button {
+    margin: 0;
+    padding: .5rem;
+}
+
+.add-task-form form {
+    display: flex;
+    flex-direction: column;
+    /*gap: 2rem;*/
+
+}
+
+.add-task-form p {
+    margin: 0;
+}
+
+
+
+
+
+
