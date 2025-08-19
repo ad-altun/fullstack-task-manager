@@ -1,10 +1,10 @@
-package org.example.fullstacktodoapp.service;
+package org.example.backend.service;
 
-import org.example.fullstacktodoapp.dto.ToDoDto;
-import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
-import org.example.fullstacktodoapp.model.ToDo;
-import org.example.fullstacktodoapp.model.ToDoStatus;
-import org.example.fullstacktodoapp.repository.ToDoRepository;
+import org.example.backend.dto.ToDoDto;
+import org.example.backend.exception.ToDoNotFoundException;
+import org.example.backend.model.ToDo;
+import org.example.backend.model.ToDoStatus;
+import org.example.backend.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

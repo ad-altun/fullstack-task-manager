@@ -1,4 +1,4 @@
-package org.example.fullstacktodoapp.exception;
+package org.example.backend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

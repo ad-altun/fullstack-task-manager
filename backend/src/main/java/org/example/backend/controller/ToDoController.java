@@ -1,10 +1,10 @@
-package org.example.fullstacktodoapp.controller;
+package org.example.backend.controller;
 
-import org.example.fullstacktodoapp.dto.ToDoDto;
-import org.example.fullstacktodoapp.exception.InvalidIdRequestedException;
-import org.example.fullstacktodoapp.exception.ToDoNotFoundException;
-import org.example.fullstacktodoapp.model.ToDo;
-import org.example.fullstacktodoapp.service.ToDoService;
+import org.example.backend.dto.ToDoDto;
+import org.example.backend.exception.InvalidIdRequestedException;
+import org.example.backend.exception.ToDoNotFoundException;
+import org.example.backend.model.ToDo;
+import org.example.backend.service.ToDoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.fullstacktodoapp.exception;
+package org.example.backend.exception;
 
 public class ToDoNotFoundException extends Exception {
 

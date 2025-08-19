@@ -1,4 +1,4 @@
-package org.example.fullstacktodoapp.service;
+package org.example.backend.service;
 
 import org.springframework.stereotype.Service;
 

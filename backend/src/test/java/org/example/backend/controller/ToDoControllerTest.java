@@ -1,9 +1,8 @@
-package org.example.fullstacktodoapp.controller;
+package org.example.backend.controller;
 
-import org.example.fullstacktodoapp.model.ToDo;
-import org.example.fullstacktodoapp.model.ToDoStatus;
-import org.example.fullstacktodoapp.repository.ToDoRepository;
-import org.junit.jupiter.api.Disabled;
+import org.example.backend.model.ToDo;
+import org.example.backend.model.ToDoStatus;
+import org.example.backend.repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
